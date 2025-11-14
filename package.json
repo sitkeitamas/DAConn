@@ -1,0 +1,35 @@
+{
+  "name": "dreamapply-sdk",
+  "version": "1.0.0",
+  "description": "JavaScript SDK for DreamApply REST API - Comprehensive integration library for external tools",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.js",
+    "example": "node examples/basic-usage.js"
+  },
+  "keywords": [
+    "dreamapply",
+    "api",
+    "sdk",
+    "integration",
+    "admissions",
+    "applications",
+    "rest-api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
+
