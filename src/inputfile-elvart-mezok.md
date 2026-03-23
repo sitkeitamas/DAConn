@@ -21,7 +21,7 @@ Ezek hiánya nem állítja le a futást, de figyelmeztetés készül:
 - `Képzéskód`
 - `Tanterv`
 
-## 3) A transzformáció által olvasott input oszlopok
+## 3) Ajánlott input mezők (gyakorlatban ezt érdemes adni)
 
 Az alábbi oszlopokat a kód ténylegesen használja (ha hiányoznak, jellemzően üres/alapérték kerül a cél mezőbe):
 
@@ -45,13 +45,18 @@ Az alábbi oszlopokat a kód ténylegesen használja (ha hiányoznak, jellemzőe
 - `Offer score (extra)`
 - `Tanterv`
 - `Önktg`
-- `Önktg HU`
-- `Önktg EN`
 - `Pénznem`
 - `Citizenship`
 - `TO Neptun kód`
 
-## 4) Extra oszlopok kezelése
+## 4) Nem kötelező, felülíró input mezők (ha vannak)
+
+Ezeket a kód beolvassa, de hiányuk nem probléma, mert generálható érték kerül a célba:
+
+- `Önktg HU` (ha üres/hiányzik, `Önktg` alapján generálódik)
+- `Önktg EN` (ha üres/hiányzik, `Önktg` alapján generálódik)
+
+## 5) Extra oszlopok kezelése
 
 - A nem ismert / nem használt extra oszlopokat a transzformáció figyelmen kívül hagyja.
 - Az oszlopsorrend rugalmas, a feldolgozás fejlécnév alapján történik.
@@ -60,12 +65,12 @@ Az alábbi oszlopokat a kód ténylegesen használja (ha hiányoznak, jellemzőe
 
 - `backend/transformer.py` (`_validate_source_columns`, `_transform_row`)
 
-## 5) DreamApply (DA) interfész megfeleltetési státusz (előzetes)
+## 6) DreamApply (DA) interfész megfeleltetési státusz (előzetes)
 
 Ez egy **előzetes technikai becslés** a jelenlegi DA SDK és dokumentáció alapján.
 A végső igazolás egy minta exporttal vagy élő API lekérdezéssel történik.
 
-### 5.1 Biztosan vagy nagy valószínűséggel elérhető mezők
+### 6.1 Biztosan vagy nagy valószínűséggel elérhető mezők
 
 Ezek tipikusan applicant/application alapmezők:
 
@@ -84,7 +89,7 @@ Ezek tipikusan applicant/application alapmezők:
 - `Social security number (if any)` (előfordulhat eltérő API mezőnévvel)
 - `Citizenship` (előfordulhat eltérő API mezőnévvel)
 
-### 5.2 DA oldalon valószínűleg megvan, de mapping/összefésülés kell
+### 6.2 DA oldalon valószínűleg megvan, de mapping/összefésülés kell
 
 Ezek több entitásból jöhetnek (application/offer/program):
 
@@ -94,7 +99,7 @@ Ezek több entitásból jöhetnek (application/offer/program):
 Megjegyzés: előfordulhat, hogy az értékek nem egyetlen endpointból, hanem
 több lekérdezésből állnak össze.
 
-### 5.3 Instance-specifikus (custom field gyanús), külön ellenőrzendő
+### 6.3 Instance-specifikus (custom field gyanús), külön ellenőrzendő
 
 Ezek jellemzően intézményi beállítástól függenek:
 
@@ -108,7 +113,7 @@ Ezek jellemzően intézményi beállítástól függenek:
 - `Pénznem`
 - `TO Neptun kód`
 
-### 5.4 Következő ellenőrzési lépés
+### 6.4 Következő ellenőrzési lépés
 
 Javasolt egy "field discovery" futás:
 

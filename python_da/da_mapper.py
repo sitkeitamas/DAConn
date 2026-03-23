@@ -33,16 +33,16 @@ EXPECTED_INPUT_COLUMNS: List[str] = [
     "Address: House number",
     "Address: Postal code",
     "E-mail",
-    "Kepzeskod",
+    "Képzéskód",
     "Offer course name",
     "Offer score (extra)",
     "Tanterv",
-    "Onktg",
-    "Onktg HU",
-    "Onktg EN",
-    "Penznem",
+    "Önktg",
+    "Önktg HU",
+    "Önktg EN",
+    "Pénznem",
     "Citizenship",
-    "TO Neptun kod",
+    "TO Neptun kód",
 ]
 
 
@@ -65,13 +65,13 @@ class MapperConfig:
         "motherGivenName",
         "Mother's given name(s)",
     )
-    kepzeskod_aliases: Sequence[str] = ("kepzeskod", "Kepzeskod", "Kepzeskod")
+    kepzeskod_aliases: Sequence[str] = ("kepzeskod", "Kepzeskod", "Képzéskód")
     tanterv_aliases: Sequence[str] = ("tanterv", "Tanterv")
-    onktg_aliases: Sequence[str] = ("onktg", "Onktg")
-    onktg_hu_aliases: Sequence[str] = ("onktg_hu", "Onktg HU")
-    onktg_en_aliases: Sequence[str] = ("onktg_en", "Onktg EN")
-    penznem_aliases: Sequence[str] = ("penznem", "Penznem", "currency")
-    to_neptun_kod_aliases: Sequence[str] = ("to_neptun_kod", "TO Neptun kod", "neptun_code")
+    onktg_aliases: Sequence[str] = ("onktg", "Onktg", "Önktg")
+    onktg_hu_aliases: Sequence[str] = ("onktg_hu", "Onktg HU", "Önktg HU")
+    onktg_en_aliases: Sequence[str] = ("onktg_en", "Onktg EN", "Önktg EN")
+    penznem_aliases: Sequence[str] = ("penznem", "Penznem", "Pénznem", "currency")
+    to_neptun_kod_aliases: Sequence[str] = ("to_neptun_kod", "TO Neptun kod", "TO Neptun kód", "neptun_code")
     social_security_aliases: Sequence[str] = ("social_security_number", "ssn", "national_id")
     citizenship_aliases: Sequence[str] = ("citizenship", "nationality")
 
@@ -229,7 +229,7 @@ def map_record_to_input_row(
     row["Address: House number"] = _coalesce(address.get("houseNumber"))
     row["Address: Postal code"] = _coalesce(address.get("postalCode"), address.get("zip"))
     row["E-mail"] = _coalesce(applicant.get("email"))
-    row["Kepzeskod"] = _coalesce(
+    row["Képzéskód"] = _coalesce(
         application.get("programCode"),
         program.get("code"),
         _pick(all_custom, cfg.kepzeskod_aliases),
@@ -242,16 +242,16 @@ def map_record_to_input_row(
     )
     row["Offer score (extra)"] = _coalesce(offer.get("score"), application.get("offerScore"))
     row["Tanterv"] = _coalesce(_pick(all_custom, cfg.tanterv_aliases))
-    row["Onktg"] = _coalesce(_pick(all_custom, cfg.onktg_aliases))
-    row["Onktg HU"] = _coalesce(_pick(all_custom, cfg.onktg_hu_aliases))
-    row["Onktg EN"] = _coalesce(_pick(all_custom, cfg.onktg_en_aliases))
-    row["Penznem"] = _coalesce(offer.get("currency"), _pick(all_custom, cfg.penznem_aliases))
+    row["Önktg"] = _coalesce(_pick(all_custom, cfg.onktg_aliases))
+    row["Önktg HU"] = _coalesce(_pick(all_custom, cfg.onktg_hu_aliases))
+    row["Önktg EN"] = _coalesce(_pick(all_custom, cfg.onktg_en_aliases))
+    row["Pénznem"] = _coalesce(offer.get("currency"), _pick(all_custom, cfg.penznem_aliases))
     row["Citizenship"] = _coalesce(
         applicant.get("citizenship"),
         applicant.get("nationality"),
         _pick(all_custom, cfg.citizenship_aliases),
     )
-    row["TO Neptun kod"] = _coalesce(
+    row["TO Neptun kód"] = _coalesce(
         applicant.get("neptunCode"),
         application.get("neptunCode"),
         _pick(all_custom, cfg.to_neptun_kod_aliases),
