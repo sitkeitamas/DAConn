@@ -440,6 +440,21 @@ const applicantsService = new ApplicantsService(client);
 
 See the `examples/` directory for more usage examples.
 
+### Python mapping example
+
+The repository also contains a Python mapping module for DA export normalization:
+
+- Module: `python_da/da_mapper.py`
+- Example script: `examples/da_to_internal_csv.py`
+
+Run:
+
+```bash
+DREAMAPPLY_API_KEY="your-api-key" \
+DREAMAPPLY_BASE_URL="https://yourinstance.dreamapply.com" \
+python3 examples/da_to_internal_csv.py --status accepted --output da_input.csv
+```
+
 ## Requirements
 
 - Node.js >= 14.0.0
