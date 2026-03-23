@@ -446,6 +446,7 @@ The repository also contains a Python mapping module for DA export normalization
 
 - Module: `python_da/da_mapper.py`
 - Example script: `examples/da_to_internal_csv.py`
+- Web UI integration reference: `python_da/WEBUI_INTEGRATION_EXAMPLE.md`
 
 Run:
 
